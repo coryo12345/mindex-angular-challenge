@@ -1,0 +1,40 @@
+mat-card.employee {
+  display: block;
+  height: 100%;
+}
+
+.employee-details {
+  margin-left: 16px;
+}
+
+.employee-details dt {
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.employee-details dd {
+  font-weight: 400;
+  margin-left: 0;
+  color: rgb(0, 0, 0, 0.54);
+}
+
+.employee-report-list {
+  position: relative;
+}
+
+.report-row {
+  width: 100%;
+}
+
+.report-row h4 {
+  font-weight: 500;
+}
+
+.report-row p {
+  font-weight: 400;
+}
+
+h4,
+p {
+  margin: 0;
+}

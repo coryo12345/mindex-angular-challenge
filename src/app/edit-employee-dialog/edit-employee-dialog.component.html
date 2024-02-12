@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content class="mat-typography">
+  <section *ngIf="data.action === 'delete'">
+    <p>
+      Permanently delete direct report {{ data.employee.firstName }}
+      {{ data.employee.lastName }}?
+    </p>
+    <p>This action cannot be undone.</p>
+  </section>
+  <section *ngIf="data.action === 'edit'">
+    <form #editForm="ngForm" fxLayout="column">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          type="text"
+          [ngModel]="modifiableEmployee.firstName"
+          name="firstName"
+          disabled
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          type="text"
+          [ngModel]="modifiableEmployee.lastName"
+          name="lastName"
+          disabled
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Job Title</mat-label>
+        <input
+          matInput
+          type="text"
+          [ngModel]="modifiableEmployee.position"
+          name="position"
+          disabled
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Compensation</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="compensation"
+          (blur)="formatCompensation($event)"
+          name="compensation"
+        />
+      </mat-form-field>
+    </form>
+  </section>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [mat-dialog-close]="modifiableEmployee"
+    cdkFocusInitial
+  >
+    Confirm
+  </button>
+</mat-dialog-actions>

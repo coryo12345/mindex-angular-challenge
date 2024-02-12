@@ -1,0 +1,15 @@
+<section
+  gdColumns.gt-sm="repeat(2, 1fr)"
+  gdColumns.gt-lg="repeat(4, 1fr)"
+  gdGap="8px"
+  class="employee-list"
+>
+  <app-employee
+    *ngFor="let emp of employees"
+    class="employee-item"
+    [employee]="emp"
+    [allEmployees]="employees"
+    (edit)="editEmployee($event)"
+    (delete)="deleteEmployee($event)"
+  ></app-employee>
+</section>
