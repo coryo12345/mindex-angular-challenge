@@ -6,13 +6,13 @@
 
 - To run the code (dev server) run `npm run start`.
 - To run unit tests, run `npm run test`.
-- To run e2e tests, run `npm run e2e-install` (once, to install browsers), then `npm run e2e`.
+- To run e2e tests, run `npm run e2e-install` (once, to install browsers), then `npm run e2e` to run the tests.
 
 ## e2e changes
 
 Protractor is deprecated (https://www.npmjs.com/package/protractor) & cannot download a driver for chrome later than 114. The current version of chrome is 121, so I physically could not run the e2e tests as selenium could not start. I hadn't used protractor before, so this took a bit of time to track down.
 
-As a result I installed [Playwright](https://playwright.dev/) to run the tests instead. But since I spent a bunch of time figuring out that I couldn't use protractor, I didn't have a ton of time left to spend on writing tests, so I only wrote a couple for the major actions.
+As a result I installed [Playwright](https://playwright.dev/) to run the tests instead. But since I spent a bunch of time figuring out that I couldn't use protractor, I didn't have a ton of time left to spend on writing tests, so I only wrote a few for now.
 
 ## My thoughts & notes on the implementation
 
@@ -25,6 +25,7 @@ I tried to stick to the guidelines presented in the tasks below (how I understoo
 ## Things I added
 
 - I added `prettier` as a dev dependency as a formatter. Has no effect on the code during runtime, but I added it so I figured I should mention it.
+- As mentioned above, I replcaed `protractor` with `playwright`.
 
 # Original Document
 
