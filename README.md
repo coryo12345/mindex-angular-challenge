@@ -2,18 +2,32 @@
 
 **NOTE** The bundler fails to build on newer versions of node (for just the started code). I had node 20 and the initial code for the challenge would not build until I reverted back to 16. (v16.20.2)
 
+## Running the code
+
+- To run the code (dev server) run `npm run start`.
+- To run unit tests, run `npm run test`.
+- To run e2e tests, run `npm run e2e-install` (once, to install browsers), then `npm run e2e`.
+
+## e2e changes
+
+Protractor is deprecated (https://www.npmjs.com/package/protractor) & cannot download a driver for chrome later than 114. The current version of chrome is 121, so I physically could not run the e2e tests as selenium could not start. I hadn't used protractor before, so this took a bit of time to track down.
+
+As a result I installed [Playwright](https://playwright.dev/) to run the tests instead. But since I spent a bunch of time figuring out that I couldn't use protractor, I didn't have a ton of time left to spend on writing tests, so I only wrote a couple for the major actions.
+
 ## My thoughts & notes on the implementation
+
 I tried to stick to the guidelines presented in the tasks below (how I understood what was being asked below). There are a few things I noted while completing this challenge, where I might have implemented things differently than how it seemed the the instructions wanted me to implement them. I have noted them below for reference.
 
 1. I made a comment in the dialog component, about how I may have split them up into 2 different components rather than using one component to handle both edit & delete. None of the logic for formatting the compensation would be required for deletion, and having to change the title based on the action makes using component more complicated than perhaps it needs to be in my opinion. However I understood the ask to be to create **one** new component for this task. (S in SOLID)
 2. I am assuming that direct & indirect reports means all the children below the employee in the "tree" regardless of depth. The task indicates to do this in the employee component, which means a complete list of all employees is required within the employee component to derive this information. I added an additional input to the component to pass the list of employees rather than re-fetching the data via the service. Ideally, this should probably be calculated outside this component to make the component "single-purposed" and not depend on extra info / state / data to achieve it's purpose than what it needs. But the task says to do this ("add a new field that collects the employees reporting to this person, directly and indirectly") in the employee component, so that is how I implemented it.
 3. The mock backend doesn't remove referenced employee ids for employees that are deleted. I could update the other employees first, to remove the id from `directReports` before deleting, but I had to stop somewhere so I did not (seems like that was outside the scope of this challenge).
 
-
 ## Things I added
-* I added `prettier` as a dev dependency as a formatter. Has no effect on the code during runtime, but I added it so I figured I should mention it.
+
+- I added `prettier` as a dev dependency as a formatter. Has no effect on the code during runtime, but I added it so I figured I should mention it.
 
 # Original Document
+
 ## What's Provided
 
 An [Angular 9](https://angular.io/) employee web application has been created and bootstrapped using an in browser "database".
