@@ -1,87 +1,87 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { Component } from "@angular/core";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 
-import { EmployeeComponent } from "./employee.component";
-import { mockEmployees } from "src/mocks/employees";
-import { MatIconModule } from "@angular/material/icon";
+import { EmployeeComponent } from './employee.component';
+import { mockEmployees } from 'src/mocks/employees';
+import { MatIconModule } from '@angular/material/icon';
 
-@Component({ selector: "mat-card", template: "<ng-content></ng-content>" })
+@Component({ selector: 'mat-card', template: '<ng-content></ng-content>' })
 class CardComponent {}
 
 @Component({
-  selector: "mat-card-header",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-card-header',
+  template: '<ng-content></ng-content>',
 })
 class CardHeaderComponent {}
 
 @Component({
-  selector: "mat-card-title",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-card-title',
+  template: '<ng-content></ng-content>',
 })
 class CardTitleComponent {}
 
 @Component({
-  selector: "mat-card-subtitle",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-card-subtitle',
+  template: '<ng-content></ng-content>',
 })
 class CardSubtitleComponent {}
 
 @Component({
-  selector: "mat-card-content",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-card-content',
+  template: '<ng-content></ng-content>',
 })
 class CardContentComponent {}
 
 @Component({
-  selector: "mat-accordian",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-accordian',
+  template: '<ng-content></ng-content>',
 })
 class AccordianComponent {}
 
 @Component({
-  selector: "mat-expansion-panel",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-expansion-panel',
+  template: '<ng-content></ng-content>',
 })
 class ExpansionPanelComponent {}
 
 @Component({
-  selector: "mat-expansion-panel-header",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-expansion-panel-header',
+  template: '<ng-content></ng-content>',
 })
 class ExpansionPanelHeaderComponent {}
 
 @Component({
-  selector: "mat-panel-title",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-panel-title',
+  template: '<ng-content></ng-content>',
 })
 class PanelTitleComponent {}
 
 @Component({
-  selector: "mat-list",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-list',
+  template: '<ng-content></ng-content>',
 })
 class ListComponent {}
 
 @Component({
-  selector: "mat-list-item",
-  template: "<ng-content></ng-content>",
+  selector: 'mat-list-item',
+  template: '<ng-content></ng-content>',
 })
 class ListItemComponent {}
 
 @Component({
-  selector: "mat-divider",
-  template: "",
+  selector: 'mat-divider',
+  template: '',
 })
 class DividerComponent {}
 
-const employeeServiceSpy = jasmine.createSpyObj("EmployeeService", [
-  "getAll",
-  "get",
-  "save",
-  "remove",
+const employeeServiceSpy = jasmine.createSpyObj('EmployeeService', [
+  'getAll',
+  'get',
+  'save',
+  'remove',
 ]);
 
-describe("EmployeeComponent", () => {
+describe('EmployeeComponent', () => {
   let component: EmployeeComponent;
   let fixture: ComponentFixture<EmployeeComponent>;
 
@@ -104,8 +104,8 @@ describe("EmployeeComponent", () => {
         ListItemComponent,
       ],
       providers: [
-        { provide: "EmployeeService", useValue: employeeServiceSpy },
-        { provide: "employee", useValue: mockEmployees[0] },
+        { provide: 'EmployeeService', useValue: employeeServiceSpy },
+        { provide: 'employee', useValue: mockEmployees[0] },
       ],
     });
   }));
@@ -121,22 +121,22 @@ describe("EmployeeComponent", () => {
     fixture.detectChanges();
   };
 
-  it("should create the component", async(() => {
+  it('should create the component', async(() => {
     setup();
     expect(component).toBeTruthy();
   }));
 
-  describe("total report count", () => {
-    it("shows the total number of reports if this employee has any reports", async(() => {
+  describe('total report count', () => {
+    it('shows the total number of reports if this employee has any reports', async(() => {
       setup();
       component.ngOnInit();
 
-      const el = fixture.nativeElement.querySelector(".total-report-count dd");
+      const el = fixture.nativeElement.querySelector('.total-report-count dd');
       expect(component.totalReports).toBe(3);
-      expect(el.innerHTML).toBe("3");
+      expect(el.innerHTML).toBe('3');
     }));
 
-    it("does not show a section for total report count if this employee has no reports", async(() => {
+    it('does not show a section for total report count if this employee has no reports', async(() => {
       setup();
       component.employee = mockEmployees[3];
       component.ngOnInit();
@@ -144,7 +144,7 @@ describe("EmployeeComponent", () => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const el = fixture.nativeElement.querySelector(
-          ".total-report-count dd",
+          '.total-report-count dd',
         );
         expect(component.totalReports).toBe(-1);
         expect(el).toBe(null);
@@ -152,48 +152,48 @@ describe("EmployeeComponent", () => {
     }));
   });
 
-  describe("direct reports", () => {
-    it("renders a row for each direct report this employee has", async(() => {
+  describe('direct reports', () => {
+    it('renders a row for each direct report this employee has', async(() => {
       setup();
       component.ngOnInit();
 
       const title = fixture.nativeElement.querySelector(
-        ".employee-report-container mat-panel-title",
+        '.employee-report-container mat-panel-title',
       ).innerHTML;
-      expect(title).toBe("Direct Reports");
+      expect(title).toBe('Direct Reports');
 
       const rows = fixture.nativeElement.querySelectorAll(
-        ".employee-report-list .report-row",
+        '.employee-report-list .report-row',
       );
       expect(rows.length).toBe(1);
-      expect(rows[0].innerText).toContain("bob johnson");
+      expect(rows[0].innerText).toContain('bob johnson');
     }));
 
-    it("opens an edit dialog when the edit icon is clicked", () => {
+    it('opens an edit dialog when the edit icon is clicked', () => {
       setup();
       component.ngOnInit();
 
-      const editSpy = spyOn(component.edit, "emit");
+      const editSpy = spyOn(component.edit, 'emit');
       const btn: HTMLButtonElement =
-        fixture.nativeElement.querySelector(".edit-dialog-btn");
-      btn.dispatchEvent(new MouseEvent("click"));
+        fixture.nativeElement.querySelector('.edit-dialog-btn');
+      btn.dispatchEvent(new MouseEvent('click'));
 
       expect(editSpy).toHaveBeenCalledWith(mockEmployees[1]);
     });
 
-    it("opens a delete dialog when the delete icon is clicked", () => {
+    it('opens a delete dialog when the delete icon is clicked', () => {
       setup();
       component.ngOnInit();
 
-      const deleteSpy = spyOn(component.delete, "emit");
+      const deleteSpy = spyOn(component.delete, 'emit');
       const btn: HTMLButtonElement =
-        fixture.nativeElement.querySelector(".delete-dialog-btn");
-      btn.dispatchEvent(new MouseEvent("click"));
+        fixture.nativeElement.querySelector('.delete-dialog-btn');
+      btn.dispatchEvent(new MouseEvent('click'));
 
       expect(deleteSpy).toHaveBeenCalledWith(mockEmployees[1]);
     });
 
-    it("renders no rows when the employee has no direct reports", () => {
+    it('renders no rows when the employee has no direct reports', () => {
       setup();
       component.employee = mockEmployees[3];
       component.ngOnInit();
@@ -201,12 +201,12 @@ describe("EmployeeComponent", () => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const title = fixture.nativeElement.querySelector(
-          ".employee-report-container mat-panel-title",
+          '.employee-report-container mat-panel-title',
         );
         expect(title).toBe(null);
 
         const rows = fixture.nativeElement.querySelectorAll(
-          ".employee-report-list .report-row",
+          '.employee-report-list .report-row',
         );
         expect(rows.length).toBe(0);
       });

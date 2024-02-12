@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { catchError, map, reduce } from "rxjs/operators";
+import { Component, OnInit } from '@angular/core';
+import { catchError, map, reduce } from 'rxjs/operators';
 
-import { MatDialog } from "@angular/material/dialog";
-import { EditEmployeeDialogComponent } from "src/app/edit-employee-dialog/edit-employee-dialog.component";
-import { Employee } from "../employee";
-import { EmployeeService } from "../employee.service";
+import { MatDialog } from '@angular/material/dialog';
+import { EditEmployeeDialogComponent } from 'src/app/edit-employee-dialog/edit-employee-dialog.component';
+import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 
 @Component({
-  selector: "app-employee-list",
-  templateUrl: "./employee-list.component.html",
-  styleUrls: ["./employee-list.component.css"],
+  selector: 'app-employee-list',
+  templateUrl: './employee-list.component.html',
+  styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
@@ -26,7 +26,7 @@ export class EmployeeListComponent implements OnInit {
 
   private handleError(e: Error | any): string {
     console.error(e);
-    return (this.errorMessage = e.message || "Unable to retrieve employees");
+    return (this.errorMessage = e.message || 'Unable to retrieve employees');
   }
 
   private getEmployees() {
@@ -43,7 +43,7 @@ export class EmployeeListComponent implements OnInit {
   editEmployee(employee: Employee) {
     const dialogRef = this.dialog.open(EditEmployeeDialogComponent, {
       data: {
-        action: "edit",
+        action: 'edit',
         employee,
       },
     });
@@ -59,7 +59,7 @@ export class EmployeeListComponent implements OnInit {
   deleteEmployee(employee: Employee) {
     const dialogRef = this.dialog.open(EditEmployeeDialogComponent, {
       data: {
-        action: "delete",
+        action: 'delete',
         employee,
       },
     });

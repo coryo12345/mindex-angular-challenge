@@ -1,14 +1,14 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Employee } from "../employee";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Employee } from '../employee';
 
 @Component({
-  selector: "app-employee",
-  templateUrl: "./employee.component.html",
-  styleUrls: ["./employee.component.css"],
+  selector: 'app-employee',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent {
-  @Input() employee: Employee;
-  @Input() allEmployees: Employee[]; // see note on README for why this input is here...
+  @Input('employee') employee: Employee;
+  @Input('allEmployees') allEmployees: Employee[]; // see note on README for why this input is here...
   @Output() edit: EventEmitter<Employee>;
   @Output() delete: EventEmitter<Employee>;
 

@@ -1,7 +1,7 @@
-import { CurrencyPipe } from "@angular/common";
-import { Component, Inject } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Employee } from "src/app/employee";
+import { CurrencyPipe } from '@angular/common';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Employee } from 'src/app/employee';
 
 /**
  * Normally I would make Edit & Delete dialogs separate components,
@@ -9,14 +9,14 @@ import { Employee } from "src/app/employee";
  */
 
 export interface EditDialogData {
-  action: "edit" | "delete";
+  action: 'edit' | 'delete';
   employee: Employee;
 }
 
 @Component({
-  selector: "app-edit-employee-dialog",
-  templateUrl: "./edit-employee-dialog.component.html",
-  styleUrls: ["./edit-employee-dialog.component.css"],
+  selector: 'app-edit-employee-dialog',
+  templateUrl: './edit-employee-dialog.component.html',
+  styleUrls: ['./edit-employee-dialog.component.css'],
 })
 export class EditEmployeeDialogComponent {
   title: string;
@@ -37,16 +37,20 @@ export class EditEmployeeDialogComponent {
 
   private setTitle() {
     this.title =
-      (this.data.action === "edit" ? "Edit" : "Delete") + " Employee";
+      (this.data.action === 'edit' ? 'Edit' : 'Delete') + ' Employee';
   }
 
   formatCompensation(el?: FocusEvent) {
     try {
-      const result = this.currency.transform(this.compensation, "$");
-      this.modifiableEmployee.compensation = isNaN(parseFloat(this.compensation)) ? undefined : parseFloat(this.compensation);
+      const result = this.currency.transform(this.compensation, '$');
+      this.modifiableEmployee.compensation = isNaN(
+        parseFloat(this.compensation),
+      )
+        ? undefined
+        : parseFloat(this.compensation);
       el && ((el.target as HTMLInputElement).value = result);
     } catch (err) {
-      el && ((el.target as HTMLInputElement).value = "");
+      el && ((el.target as HTMLInputElement).value = '');
       delete this.modifiableEmployee.compensation;
     }
   }

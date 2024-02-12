@@ -53,12 +53,15 @@
   </section>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="dialogRef.close()">Cancel</button>
+  <button mat-button (click)="dialogRef.close()" class="cancel-button">
+    Cancel
+  </button>
   <button
     mat-flat-button
     color="primary"
     [mat-dialog-close]="modifiableEmployee"
     cdkFocusInitial
+    class="confirm-button"
   >
     Confirm
   </button>

@@ -1,13 +1,13 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { from, Observable, throwError } from "rxjs";
-import { catchError, flatMap } from "rxjs/operators";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { from, Observable, throwError } from 'rxjs';
+import { catchError, flatMap } from 'rxjs/operators';
 
-import { Employee } from "./employee";
+import { Employee } from './employee';
 
 @Injectable()
 export class EmployeeService {
-  private url = "/api/employees";
+  private url = '/api/employees';
 
   constructor(private http: HttpClient) {}
 
@@ -44,6 +44,6 @@ export class EmployeeService {
   }
 
   private handleError(res: HttpErrorResponse | any): Observable<never> {
-    return throwError(res.error || "Server error");
+    return throwError(res.error || 'Server error');
   }
 }
