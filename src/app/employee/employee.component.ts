@@ -63,7 +63,9 @@ export class EmployeeComponent {
     }
     for (const id of this.employee.directReports) {
       const employee = this.allEmployees.find((e) => e.id === id);
-      this.directReports.push(employee);
+      if (employee) {
+        this.directReports.push(employee);
+      }
     }
   }
 }
